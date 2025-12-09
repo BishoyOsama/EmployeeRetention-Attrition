@@ -11,87 +11,185 @@ Welcome to the **Employee Retention & Attrition** repository! This project explo
 - [Data Collection & Understanding](#data-collection--understanding)
 - [Data Cleaning & Preprocessing](#data-cleaning--preprocessing)
 - [Exploratory Data Analysis](#exploratory-data-analysis)
-- [Analysis Procedures & Methodology](#analysis-procedures--methodology)
 - [Key Findings & Insights](#key-findings--insights)
 - [Solutions & Recommendations](#solutions--recommendations)
-- [Limitations & Assumptions](#limitations--assumptions)
 - [How to Reproduce](#how-to-reproduce)
-- [References](#references)
 
 ---
 
 ## Background & Business Problem
 
-Briefly introduce the business, industry, or context.
-Describe the challenge(s) faced.
-- Example: "The company noticed a decline in customer retention and wanted to identify churn drivers."
+Any company has employees that monitor their perfomance and work through different departements and roles and not only that, A company tries to keep their employees satisfied so:
+  - How do Employees churn and what are the factors affecting churn?
+  - is attrition high or low?, which departments with high attrition rate?
+  - what are the factors affecting high attrition?
 
 ## Project Objectives
 
 Clearly state the goals of the project.
-- What questions are you trying to answer?
-- What metrics are you focusing on?
-- Example: "Analyze customer data to identify factors influencing churn and recommend actions to reduce churn rate."
+- identifying factors affecting both churn and attrition.
+- departments with high attrition/churn and what factors affecting attrition/churn to that department the most.
+- offer recommendations and suggested actions to help minimizing the effect of that factors.
 
 ## Data Collection & Understanding
 
-Describe how the data was collected.
-Summarize the datasets used (sources, dimensions, time period).
-Provide a data dictionary (columns and meaning).
-- Example: "We analyzed transaction records, customer profiles, and service interactions from Jan 2022 to Oct 2024."
+| file | type |
+| ------- | ----------- |
+| Employee | .csv |
+| EducationLevel | .csv |
+| PerformanceRating | .csv |
+| RatingLevel | .csv |
+| SatisifiedLevel | .csv |
+
+Employee Table Columns
+
+| columnName | Description |
+| -----------| ------------|
+| EmployeeID | employee unique id.|	
+| FirstName	 | employee first name |
+| LastName	 | employee last name |
+| Gender	   | employee gender |
+| Age	       | employee age  |
+| BusinessTravel	|  frequency travel category for employee |
+| Department	    | department where the employee works  |
+| DistanceFromHome (KM)	| calculated distance in kilometers from employee home to company`s site |
+| State	  | employee`s state |
+| Ethnicity	| employee`s ethnicity |
+| Education	 | employee level of education id |
+| EducationField	| the field of employee`s education |
+| JobRole	  | employee job role  |
+| MaritalStatus	| employee marital status (single, married, etc..) |
+| Salary	| employee`s salary |
+| StockOptionLevel	| unknown |
+| OverTime	| does the employee take over night? |
+| HireDate	| the date the employee was hired |
+| Attrition	| is the employee attritioned?  |
+| YearsAtCompany	| full working years of the employee at the company |
+| YearsInMostRecentRole	| years of working in most recent role |
+| YearsSinceLastPromotion	| how many years since last promotion? |
+| YearsWithCurrManager  | how many years does that employee worked with his/her current manager? |
+
+EducationLevel Table Columns
+
+| columnName | Description |
+| -----------| ------------|
+| EducationLevelID | education level unique id.|	
+| EducationLevel	 | actual education level (high school, bachelor, etc...) |
+
+PerformanceRating Table Columns
+
+| columnName | Description |
+| -----------| ------------|
+| PerformanceID | performance record unique identifyer |	
+| EmployeeID	 | employee unique id. |
+| ReviewDate   | the date when the employee was reviewed |
+| EnvironmentSatisfaction	| environment satisfaction of the employee (range: 1-5) |
+| JobSatisfaction	   | job satisfaction of the employee (range: 1-5) |
+| RelationshipSatisfaction	| relationship satisfaction of the employee (range: 1-5) |
+| TrainingOpportunitiesWithinYear	| number of training opportunities with in year |
+| TrainingOpportunitiesTaken	| number of training opportunities taken |
+| WorkLifeBalance	| work life balance of the employee (range: 1-5) |
+| SelfRating	| employee self rating (range: 1-5) |
+| ManagerRating | employee manager rating (rating: 1-5) |
+
+RatingLevel Table Columns
+
+| columnName | Description |
+| -----------| ------------|
+| RatingID | rating unique identifier |	
+| RatingLevel	 | value of the rating level (e.g: Meets Expectation) |
+
+SatisfiedLevel Table Columns
+
+| columnName | Description |
+| -----------| ------------|
+| SatisfactionID | satisfaction unique identifyer |	
+| SatisfactionLevel	 | value of the Satisfaction level (e.g: Satisfied) |
+
+
 
 ## Data Cleaning & Preprocessing
 
-Outline the steps for cleaning the data—missing values, outliers, formatting.
-Document key transformations and feature engineering.
-- Example: "Removed records with missing age, imputed missing values in 'income', and created new variable 'engagement_score'."
+Not much cleaning was introduced
 
 ## Exploratory Data Analysis
 
-Present summary statistics and initial visualizations.
-Highlight notable patterns, anomalies, or trends.
-Narrate the discovery process—what did you observe and how did it guide the analysis?
-- Example: "We found a strong correlation between low engagement scores and churn."
+- there were 1470 employees as total, 237 of them were inActiveEmployees (labeled with "Yes" as attrition)
+- the attrition rate was 16.1% which is relatively high
+- 2016 & 2020 had the most attrition rate may be for the latter is covid-19 where people had to stay home and work from, them made them lose a lot communication benefits and just doing tasks
+- employees with just one year at the company are more likely to churn
 
-## Analysis Procedures & Methodology
+## Sample Report:
 
-Explain analytical techniques used (e.g., regression, clustering).
-Justify why you chose particular methods.
-Provide code snippets or workflow diagrams as needed.
-- Example: "Used logistic regression to quantify churn risk and k-means clustering to segment customers."
+https://github.com/user-attachments/assets/eab76ee0-7b15-416f-b6c3-b29628d122a9
+
+
+
 
 ## Key Findings & Insights
 
-Storytelling: Guide the reader through your main discoveries.
-Visualize findings (graphs, charts).
-Interpret what the results mean for the business problem.
-- Example: "Customers with low engagement and high support tickets are 3x more likely to churn."
+1- Attrition:
+
+  By Department & Job Role:
+    - Sales Representatives and Human Resources Recruiters have the highest attrition rates (nearly 40%), meaning these positions are particulary volatile
+    - Technology roles (e.g. Software Engineers) have moderate attrition but make up the majority of the workforce
+
+  By Travel Frequency:
+    - Employees categorized as "Frequent Travellers" have the highest attrition rates.
+    - "No Travel" employees have the lowest, suggesting travel demands may be a retention risk.
+
+  By Overtime:
+    - Staff who work overtime have a significantly higher attrition rate (~31%) than those who do not (~10%)
+
+  By Education Level:
+    - No formal Qualifications & Lower education levels correlate with higher attrition rates than advanced degrees
+
+  By Years at Company:
+    - Highest attrition is observed within the first 1-2 years of tenure, sharply declining as length of service increases
+
+
+2- Demographics:
+
+  - Most employees are white, aged 20-29 and married.
+  - highest average salaries are for white and native hawaiian.
+  - age and gender distributions show the bulk of employees in their 20s and 30s.
+
+3- Organizational Structure:
+
+  - The technology department is the largest, but the attrition`s biggest pain points are in sales and HR.
+  - Out of 1470 employees, 1233 are active, and 237 are inactive with notable spike in attrition in recent years
+
+4- Individual Performance and Satisfaction is left for discovery
+
 
 ## Solutions & Recommendations
 
-Based on insights, propose actions.
-Quantify expected impact if possible.
-- Example: "Launching a loyalty program for at-risk segments could reduce churn by 15%."
+1- Investigate High-Risk Roles and Departments
 
-## Limitations & Assumptions
+  - Conduct targeted interviews/surveys for Sales Representatives and HR Recruiters to understand specific pain points.
+  - Enhance onboarding/training for new hires in the first two years.
 
-Acknowledge caveats in your approach (data gaps, assumptions).
-Suggest improvements for future analyses.
+2- Address Overtime and Travel
+
+  - Review overtime policies, add good bonuses for overtime and promote work-life balance.
+  - consider options to reduce travel or support frequent travelers with additional resources.
+
+3- Improve Retention for Early Tenure Employees
+
+  - Focused mentoring for new hires, especially those in first 1-2 years.
+
+4- Monitor and Boost Employee Satisfaction 
+
+  - Pay attention to manager ratings and work-life balance in performance reviews.
+  - Offer development paths to employees with lower education, possibly integrating upskilling programs.
+
+5- Track Demographic Trends
+
+  - Stay alert for underrepresented or high-risk demographic groups (age, ethnicity, marital status) that may require tailored retention strategies.
+
 
 ## How to Reproduce
 
 Step-by-step instructions for running the analysis:
-1. Clone the repository.
-2. Set up the environment (list dependencies).
-3. Run the data pipeline and scripts.
-4. View results and notebooks.
+1. Just download the report and dataset needed
 
-## References
-
-Cite datasets, papers, or resources used.
-
----
-
-## Contact
-
-Questions or feedback? Reach out via [issues](https://github.com/[your-username]/[repo-name]/issues) or email.
